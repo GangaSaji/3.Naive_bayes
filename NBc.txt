@@ -1,0 +1,39 @@
+#1.Training..........................
+#load data
+import pandas as pd
+train= pd.read_csv("/content/train.csv")
+x_train=train[['Age','Flight Distance','Inflight wifi service','Ease of Online booking', 'Food and drink', 'Seat comfort', 'Leg room service','Cleanliness', 'Departure Delay in Minutes']]
+y_train=train['satisfaction']
+
+test= pd.read_csv("/content/train.csv")
+x_test=test[['Age','Flight Distance','Inflight wifi service','Ease of Online booking', 'Food and drink', 'Seat comfort', 'Leg room service','Cleanliness', 'Departure Delay in Minutes']]
+y_test=test['satisfaction']
+#algorithm (build model)
+  # Gaussian Naive Bayes.................
+from sklearn.naive_bayes import GaussianNB
+Ml=GaussianNB()
+  # Multinomial Naive Bayes.................
+from sklearn.naive_bayes import MultinomialNB
+Ml2=MultinomialNB()
+  # Bernoulli Naive Bayes.................
+from sklearn.naive_bayes import BernoulliNB 
+Ml3=BernoulliNB()
+#Fit data into algorithm
+Ml=Ml.fit(x_train,y_train)
+Ml2= Ml2.fit (x_test,y_test)
+Ml3 = Ml3.fit (x_test,y_test)
+#2.Testing............................
+result1= Ml.predict(x_test)
+
+result2= Ml2.predict(x_test)
+ 
+result3= Ml3.predict( x_test)
+
+#accuracy
+from sklearn.metrics import accuracy_score
+score1 =accuracy_score(result1,y_test)  
+print ("Accuracy from gaussian naive bayes: = ", score1*100)
+score2 =accuracy_score(result2,y_test)  
+print ("Accuracy from multinomial naive bayes: = ", score2*100)
+score3 =accuracy_score(result3,y_test)  
+print ("Accuracy from bernoulli naive bayes: = ", score3*100)

@@ -1,0 +1,27 @@
+#1.Training..........................
+#load data
+from sklearn.datasets import load_iris
+iris=load_iris()
+x=iris.data
+y=iris.target
+#algorithm (build model)
+  # Gaussian Naive Bayes.................
+from sklearn.naive_bayes import GaussianNB
+Ml1=GaussianNB()
+  # Multinomial Naive Bayes.................
+from sklearn.naive_bayes import MultinomialNB
+Ml2=MultinomialNB()
+  # Bernoulli Naive Bayes.................
+from sklearn.naive_bayes import BernoulliNB 
+Ml3=BernoulliNB()
+#Fit data into algorithm
+Ml1 = Ml1.fit (x,y)
+Ml2 = Ml2.fit (x,y)
+Ml3 = Ml3.fit (x,y)
+#2.Testing............................
+result1= Ml1.predict([[3.5,3.5,3.5,3.5 ]])
+print ("result from gaussian naive bayes:",result1) 
+result2= Ml2.predict([[3.5,3.5,3.5,3.5 ]])
+print ("result from multinomial naive bayes:",result2) 
+result3= Ml3.predict([[3.5,3.5,3.5,3.5 ]])
+print ("result from bernoulli naive bayes:",result3) 
